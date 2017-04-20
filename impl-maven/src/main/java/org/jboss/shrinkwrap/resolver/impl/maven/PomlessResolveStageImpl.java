@@ -34,7 +34,7 @@ class PomlessResolveStageImpl extends
     implements PomlessResolveStage {
 
     private final Logger log = Logger.getLogger("PomlessResolveStageImpl");
-    
+
     public PomlessResolveStageImpl(final MavenWorkingSession session) {
         super(session);
         log.warning("PomlessResolveStageImpl");

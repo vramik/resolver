@@ -59,9 +59,9 @@ public abstract class ConfigurableMavenWorkingSessionImpl implements MavenWorkin
         this.settingsManager = new SettingsManager();
         log.log(Level.WARNING, "\n\n\n----------------settings: localRepo: {0}", settingsManager.getSettings().getLocalRepository());
         log.log(Level.WARNING, "\n\n\n----------------settings: active profiles: {0}", settingsManager.getSettings().getActiveProfiles());
-        
+
         log.log(Level.WARNING, "\n\n\ngetSession().getLocalRepository().getBasedir().getAbsolutePath(): {0}", getSession().getLocalRepository().getBasedir().getAbsolutePath());
-        
+
     }
 
     @Override

@@ -18,7 +18,7 @@ abstract class MavenResolveStageBaseImpl<RESOLVESTAGETYPE extends MavenResolveSt
         extends ResolveStageBaseImpl<RESOLVESTAGETYPE, STRATEGYSTAGETYPE, FORMATSTAGETYPE> {
 
     private final Logger log = Logger.getLogger("MavenResolveStageBaseImpl");
-    
+
     protected MavenResolveStageBaseImpl(final MavenWorkingSession session) {
         super(session);
         log.warning("MavenResolveStageBaseImpl");
