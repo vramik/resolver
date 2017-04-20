@@ -158,18 +158,17 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
                 .setSystemProperties(SecurityActions.getProperties()).setProfiles(this.getSettingsDefinedProfiles())
                 .setPomFile(pomFile).setActiveProfileIds(SettingsXmlProfileSelector.explicitlyActivatedProfiles(profiles))
                 .setInactiveProfileIds(SettingsXmlProfileSelector.explicitlyDisabledProfiles(profiles));
-        log.warning("-1-");
         ModelBuilder builder = new DefaultModelBuilderFactory().newInstance();
-        log.warning("-2-");
         ModelBuildingResult result;
         try {
             request.setModelResolver(new MavenModelResolver(getSystem(), getSession(), getRemoteRepositories()));
-            log.warning("-3-");
+            log.log(Level.WARNING, "-1- {0}", getRemoteRepositories());
             result = builder.build(request);
         }
         // wrap exception message
         catch (ModelBuildingException e) {
             String pomPath = request.getPomFile().getAbsolutePath();
+            log.log(Level.WARNING, "-2- {0}", pomPath);
             StringBuilder sb = new StringBuilder("Found ").append(e.getProblems().size())
                     .append(" problems while building POM model from ").append(pomPath).append("\n");
 
@@ -177,7 +176,7 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
             for (ModelProblem problem : e.getProblems()) {
                 sb.append(counter++).append("/ ").append(problem).append("\n");
             }
-
+            log.log(Level.WARNING, "-3- {0}", sb.toString());
             throw new InvalidConfigurationFileException(sb.toString());
         }
 
