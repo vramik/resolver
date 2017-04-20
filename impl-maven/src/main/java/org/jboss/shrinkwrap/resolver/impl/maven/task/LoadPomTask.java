@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.resolver.impl.maven.task;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.resolver.api.InvalidConfigurationFileException;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenWorkingSession;
@@ -35,6 +36,7 @@ public class LoadPomTask implements MavenWorkingSessionTask<MavenWorkingSession>
     private final String[] profiles;
 
     private LoadPomTask(File pomFile, String[] profiles) {
+        Logger.getLogger("org.jboss.shrinkwrap.resolver.impl.maven.task.LoadPomTask").warning("$$$LoadPomTask constructor");
         this.pomFile = pomFile;
         this.profiles = profiles == null ? EMPTY_ARRAY : profiles;
     }

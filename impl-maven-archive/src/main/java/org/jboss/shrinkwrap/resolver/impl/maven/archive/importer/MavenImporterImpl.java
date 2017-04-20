@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.resolver.impl.maven.archive.importer;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.Assignable;
@@ -43,8 +44,10 @@ public class MavenImporterImpl implements MavenImporter, ConfiguredMavenImporter
 
     private MavenWorkingSession session;
     private Archive<?> archive;
+    private final Logger log;
 
     public MavenImporterImpl(Archive<?> archive) {
+        this.log = Logger.getLogger("org.jboss.shrinkwrap.resolver.impl.maven.archive.importer.MavenImporterImpl");
         // this is needed to boostrap session
         Resolvers.use(MavenResolverSystem.class);
         this.session = new MavenWorkingSessionImpl();
@@ -96,6 +99,7 @@ public class MavenImporterImpl implements MavenImporter, ConfiguredMavenImporter
     @Override
     public PomEquippedMavenImporter loadPomFromFile(File pomFile) throws IllegalArgumentException,
             InvalidConfigurationFileException {
+        log.warning("##loadPomFromFile(File pomFile)");
         this.session = LoadPomTask.loadPomFromFile(pomFile).execute(session);
         this.session = LoadPomDependenciesTask.INSTANCE.execute(session);
         PackagingType packagingType = InferPackagingTypeTask.INSTANCE.execute(session);
@@ -107,6 +111,7 @@ public class MavenImporterImpl implements MavenImporter, ConfiguredMavenImporter
     @Override
     public PomEquippedMavenImporter loadPomFromFile(File pomFile, String... profiles) throws IllegalArgumentException,
             InvalidConfigurationFileException {
+        log.warning("##loadPomFromFile(File pomFile, String... profiles)");
         this.session = LoadPomTask.loadPomFromFile(pomFile, profiles).execute(session);
         this.session = LoadPomDependenciesTask.INSTANCE.execute(session);
         PackagingType packagingType = InferPackagingTypeTask.INSTANCE.execute(session);
@@ -119,6 +124,7 @@ public class MavenImporterImpl implements MavenImporter, ConfiguredMavenImporter
     public PomEquippedMavenImporter loadPomFromFile(String pathToPomFile) throws IllegalArgumentException,
             InvalidConfigurationFileException {
 
+        log.warning("##loadPomFromFile(String pathToPomFile)");
         this.session = LoadPomTask.loadPomFromFile(pathToPomFile).execute(session);
         this.session = LoadPomDependenciesTask.INSTANCE.execute(session);
         PackagingType packagingType = InferPackagingTypeTask.INSTANCE.execute(session);
@@ -131,6 +137,7 @@ public class MavenImporterImpl implements MavenImporter, ConfiguredMavenImporter
     public PomEquippedMavenImporter loadPomFromFile(String pathToPomFile, String... profiles) throws IllegalArgumentException,
             InvalidConfigurationFileException {
 
+        log.warning("##loadPomFromFile(String pathToPomFile, String... profiles)");
         this.session = LoadPomTask.loadPomFromFile(pathToPomFile, profiles).execute(session);
         this.session = LoadPomDependenciesTask.INSTANCE.execute(session);
         PackagingType packagingType = InferPackagingTypeTask.INSTANCE.execute(session);

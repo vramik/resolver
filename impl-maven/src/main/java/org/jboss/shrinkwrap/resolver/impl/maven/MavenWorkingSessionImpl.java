@@ -18,6 +18,7 @@ package org.jboss.shrinkwrap.resolver.impl.maven;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -151,6 +152,7 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
     @Override
     public MavenWorkingSession loadPomFromFile(File pomFile, String... profiles) throws InvalidConfigurationFileException {
 
+        log.log(Level.WARNING, "MavenWorkingSessionImpl.loadPomFromFile({0}, {1})", new Object[]{pomFile.getPath(), Arrays.toString(profiles)});
         final DefaultModelBuildingRequest request = new DefaultModelBuildingRequest()
                 .setSystemProperties(SecurityActions.getProperties()).setProfiles(this.getSettingsDefinedProfiles())
                 .setPomFile(pomFile).setActiveProfileIds(SettingsXmlProfileSelector.explicitlyActivatedProfiles(profiles))
