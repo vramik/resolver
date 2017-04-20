@@ -17,6 +17,7 @@
 package org.jboss.shrinkwrap.resolver.impl.maven;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.resolver.api.InvalidConfigurationFileException;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenFormatStage;
@@ -37,8 +38,11 @@ public abstract class PomlessResolveStageBaseImpl<EQUIPPEDRESOLVESTAGETYPE exten
         extends MavenResolveStageBaseImpl<UNEQUIPPEDRESOLVESTAGETYPE, STRATEGYSTAGETYPE, FORMATSTAGETYPE> implements
         PomlessResolveStageBase<EQUIPPEDRESOLVESTAGETYPE, UNEQUIPPEDRESOLVESTAGETYPE, STRATEGYSTAGETYPE, FORMATSTAGETYPE> {
 
+    private final Logger log = Logger.getLogger("org.jboss.shrinkwrap.resolver.impl.maven.PomlessResolveStageBaseImpl");
+    
     public PomlessResolveStageBaseImpl(final MavenWorkingSession session) {
         super(session);
+        log.warning("PomlessResolveStageBaseImpl");
     }
 
     /**
@@ -89,6 +93,8 @@ public abstract class PomlessResolveStageBaseImpl<EQUIPPEDRESOLVESTAGETYPE exten
     @Override
     public final EQUIPPEDRESOLVESTAGETYPE loadPomFromFile(final String pathToPomFile) throws IllegalArgumentException,
             InvalidConfigurationFileException {
+        
+        log.warning("loadPomFromFile(final String pathToPomFile)");
         final MavenWorkingSession session = this.getMavenWorkingSession();
         LoadPomTask.loadPomFromFile(pathToPomFile).execute(session);
         return this.createNewPomEquippedResolveStage();

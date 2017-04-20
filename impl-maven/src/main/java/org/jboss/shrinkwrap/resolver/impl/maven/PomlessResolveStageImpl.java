@@ -16,6 +16,7 @@
  */
 package org.jboss.shrinkwrap.resolver.impl.maven;
 
+import java.util.logging.Logger;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenFormatStage;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStage;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenWorkingSession;
@@ -32,8 +33,11 @@ class PomlessResolveStageImpl extends
     PomlessResolveStageBaseImpl<PomEquippedResolveStage, PomlessResolveStage, MavenStrategyStage, MavenFormatStage>
     implements PomlessResolveStage {
 
+    private final Logger log = Logger.getLogger("PomlessResolveStageImpl");
+    
     public PomlessResolveStageImpl(final MavenWorkingSession session) {
         super(session);
+        log.warning("PomlessResolveStageImpl");
     }
 
     /**

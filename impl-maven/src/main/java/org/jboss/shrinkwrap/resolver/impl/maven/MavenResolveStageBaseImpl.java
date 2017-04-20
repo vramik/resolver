@@ -1,5 +1,6 @@
 package org.jboss.shrinkwrap.resolver.impl.maven;
 
+import java.util.logging.Logger;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenFormatStage;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenResolveStageBase;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenStrategyStageBase;
@@ -16,8 +17,11 @@ import org.jboss.shrinkwrap.resolver.impl.maven.util.Validate;
 abstract class MavenResolveStageBaseImpl<RESOLVESTAGETYPE extends MavenResolveStageBase<RESOLVESTAGETYPE, STRATEGYSTAGETYPE, FORMATSTAGETYPE>, STRATEGYSTAGETYPE extends MavenStrategyStageBase<STRATEGYSTAGETYPE, FORMATSTAGETYPE>, FORMATSTAGETYPE extends MavenFormatStage>
         extends ResolveStageBaseImpl<RESOLVESTAGETYPE, STRATEGYSTAGETYPE, FORMATSTAGETYPE> {
 
+    private final Logger log = Logger.getLogger("MavenResolveStageBaseImpl");
+    
     protected MavenResolveStageBaseImpl(final MavenWorkingSession session) {
         super(session);
+        log.warning("MavenResolveStageBaseImpl");
     }
 
     /**

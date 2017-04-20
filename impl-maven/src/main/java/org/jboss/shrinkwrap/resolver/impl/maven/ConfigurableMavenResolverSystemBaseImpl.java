@@ -17,6 +17,8 @@
 package org.jboss.shrinkwrap.resolver.impl.maven;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jboss.shrinkwrap.resolver.api.InvalidConfigurationFileException;
 import org.jboss.shrinkwrap.resolver.api.maven.ConfigurableMavenResolverSystem;
@@ -44,6 +46,7 @@ public abstract class ConfigurableMavenResolverSystemBaseImpl<UNCONFIGURABLERESO
     implements
     ConfigurableMavenResolverSystemBase<UNCONFIGURABLERESOLVERSYSTEMTYPE, CONFIGURABLEBERESOLVERSYSTEMTYPE, EQUIPPEDRESOLVESTAGETYPE, UNEQUIPPEDRESOLVESTAGETYPE, STRATEGYSTAGETYPE, FORMATSTAGETYPE, CONFIGURABLEBERESOLVERSYSTEMTYPE> {
 
+    private final Logger log = Logger.getLogger("org.jboss.shrinkwrap.resolver.impl.maven.ConfigurableMavenResolverSystemBaseImpl");
     /**
      * Creates a new instance using the specified delegate, which is required and must also implement the
      * {@link MavenWorkingSessionContainer} SPI, else {@link IllegalArgumentException} will be thrown..
@@ -65,6 +68,7 @@ public abstract class ConfigurableMavenResolverSystemBaseImpl<UNCONFIGURABLERESO
     @Override
     public final UNCONFIGURABLERESOLVERSYSTEMTYPE configureFromFile(final File file) throws IllegalArgumentException,
         UnsupportedOperationException, InvalidConfigurationFileException {
+        log.log(Level.WARNING, "configureFromFile: {0}", file.getAbsolutePath());
         Validate.notNull(file, "settings file must be specified");
         Validate.readable(file, "settings file is not readable: " + file.getAbsolutePath());
         new ConfigureSettingsFromFileTask(file).execute(this.getSession());

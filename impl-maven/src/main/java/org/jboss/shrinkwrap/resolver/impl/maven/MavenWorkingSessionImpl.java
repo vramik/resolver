@@ -121,6 +121,7 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
 
     public MavenWorkingSessionImpl() {
         super();
+        log.warning("constructing MavenWorkingSessionImpl");
         this.remoteRepositories = new ArrayList<RemoteRepository>();
         this.additionalRemoteRepositories = new ArrayList<RemoteRepository>();
 

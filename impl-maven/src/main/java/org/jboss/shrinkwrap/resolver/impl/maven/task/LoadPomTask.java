@@ -34,14 +34,16 @@ public class LoadPomTask implements MavenWorkingSessionTask<MavenWorkingSession>
     private static final String[] EMPTY_ARRAY = new String[] {};
     private final File pomFile;
     private final String[] profiles;
+    private static final Logger log = Logger.getLogger("org.jboss.shrinkwrap.resolver.impl.maven.task.LoadPomTask");;
 
     private LoadPomTask(File pomFile, String[] profiles) {
-        Logger.getLogger("org.jboss.shrinkwrap.resolver.impl.maven.task.LoadPomTask").warning("$$$LoadPomTask constructor");
+        log.warning("$$$LoadPomTask constructor");
         this.pomFile = pomFile;
         this.profiles = profiles == null ? EMPTY_ARRAY : profiles;
     }
 
     public static LoadPomTask loadPomFromFile(final File pomFile, final String... profiles) {
+        log.warning("loadPomFromFile(final File pomFile, final String... profiles)");
         Validate.notNull(pomFile, "POM file must be specified");
         return new LoadPomTask(pomFile, profiles);
     }
@@ -50,6 +52,7 @@ public class LoadPomTask implements MavenWorkingSessionTask<MavenWorkingSession>
             throws IllegalArgumentException,
             InvalidConfigurationFileException {
 
+        log.warning("LoadPomTask loadPomFromFile(final String pathToPomFile, final String... profiles)");
         Validate.notNullOrEmpty(pathToPomFile, "Path to a POM file must be specified");
         Validate.readable(pathToPomFile, "Path to the pom.xml ('" + pathToPomFile
                 + "')file must be defined and accessible");
@@ -80,6 +83,7 @@ public class LoadPomTask implements MavenWorkingSessionTask<MavenWorkingSession>
     @Override
     public MavenWorkingSession execute(final MavenWorkingSession session) {
 
+        log.warning("execute");
         Validate.notNull(pomFile, "Path to pom.xml file must not be null");
         Validate.readable(pomFile, "Path to the POM ('" + pomFile + "') file must be defined and accessible");
 
